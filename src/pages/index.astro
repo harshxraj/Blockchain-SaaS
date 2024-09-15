@@ -1,9 +1,17 @@
 ---
 import DefaultLayout from "../layouts/Default.astro";
 import { HeaderSection } from "../sections/Header";
-import { HeroSection } from "../sections/Hero"
-import { FeaturesSection } from "../sections/Features"
-import { FeaturesGrid } from "../sections/FeaturesGrid"
+import { HeroSection } from "../sections/Hero";
+import { FeaturesSection } from "../sections/Features";
+import { FeaturesGrid } from "../sections/FeaturesGrid";
+import { LatestPosts } from "../sections/LatestPosts";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection('blog')
+const latestPosts = posts.sort((a, b) => {
+  if(a.data.pubDate.valueOf() === b.data.pubDate.valueOf()) return 0;
+  return a.data.pubDate.valueOf() > b.data.pubDate.valueOf() ? -1 : 1
+}).slice(0, 4)
 ---
 
 <DefaultLayout>
@@ -11,4 +19,5 @@ import { FeaturesGrid } from "../sections/FeaturesGrid"
   <HeroSection/>
   <FeaturesSection/>
   <FeaturesGrid/>
+  <LatestPosts latestPosts={latestPosts}/>
 </DefaultLayout>
