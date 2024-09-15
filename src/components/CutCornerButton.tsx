@@ -19,7 +19,7 @@ export const CutCornerButton = (props: ComponentPropsWithRef<"button">) => {
           xmlns="http://www.w3.org/2000/svg"
           className="absolute top-0 right-0 text-fuchsia-500"
         >
-          <path d="M0 1H12.2667L23 11.7333V24" stroke="currentColor" stroke-width="2"></path>
+          <path d="M0 1H12.2667L23 11.7333V24" stroke="currentColor" strokeWidth="2"></path>
         </svg>
       </div>
       <span className="leading-6">{children}</span>
