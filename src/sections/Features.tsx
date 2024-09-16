@@ -43,7 +43,7 @@ export const FeaturesSection = () => {
 
     const timeout = setTimeout(() => {
       setSelectedCardIndex((curr) => (curr == cardData.length - 1 ? 0 : curr + 1));
-    }, 3000);
+    }, 2000);
 
     return () => {
       clearTimeout(timeout);
