@@ -66,6 +66,7 @@ export const FeaturesSection = () => {
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                key={title}
               >
                 <Card key={title} color={color} className="max-w-xs md:max-w-md">
                   <div className="flex justify-center -mt-28">
