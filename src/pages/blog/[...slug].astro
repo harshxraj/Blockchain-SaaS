@@ -1,18 +1,24 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import DefaultLayout from "../../layouts/Default.astro"
+import InteriorHero from '../../components/InteriorHero.astro';
+import { Tag } from '../../components/Tag';
+import { getPostColorFromCategory } from '../../utils/postUtils';
+import InteriorContent from '../../components/InteriorContent.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
-	return posts.map((post) => ({
+	return posts.map((post: any) => ({
 		params: { slug: post.slug },
 		props: post,
 	}));
 }
 type Props = CollectionEntry<'blog'>;
 
-// const post = Astro.props;
-// const { Content } = await post.render();
+const post: Props = Astro.props;
+const { data: {category, title, description, author: {name, title: authorTitle}} }: Props = post;
+const { Content } = await post.render()
 ---
 
 <!-- <BlogPost {...post.data}>
@@ -20,6 +26,24 @@ type Props = CollectionEntry<'blog'>;
 </BlogPost> -->
 
 
-<div>
-	blog post
-</div>
+<DefaultLayout>
+	<InteriorHero>
+		<div class="relative">
+			<div class="flex justify-center">
+				<Tag color={getPostColorFromCategory(category)}>{category}</Tag>
+			 </div>
+			 <h1 class="font-heading font-black text-5xl lg:text-7xl md:text-6xl text-center mt-4">{title}</h1>
+			 <p class="text-center text-xl mt-8 text-zinc-400 max-w-2xl mx-auto">{description}</p>
+			 <div class="flex flex-col items-center mt-8">
+				<div class="size-16 rounded-full bg-zinc-700 bg-cover bg-center"></div>
+				<div class="font-extrabold text-lg mt-3">{name}</div>
+				<div class="text-zinc-500">{authorTitle}</div>
+			 </div>
+		</div>
+	</InteriorHero>
+	<InteriorContent>
+			<div class="prose prose-invert prose-lg max-auto prose-zinc prose-headings:font-heading prose-headings:font-black prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:lg:text-5xl prose-h3:text2xl prose-h3:md:text-3xl prose-h3:lg:text-4xl">
+				<Content/>
+			</div>
+		</InteriorContent>
+</DefaultLayout>

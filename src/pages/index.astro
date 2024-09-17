@@ -11,7 +11,7 @@ import { Footer } from "../sections/Footer";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection('blog')
-const latestPosts = posts.sort((a, b) => {
+const latestPosts = posts.sort((a: any, b: any) => {
   if(a.data.pubDate.valueOf() === b.data.pubDate.valueOf()) return 0;
   return a.data.pubDate.valueOf() > b.data.pubDate.valueOf() ? -1 : 1
 }).slice(0, 4)

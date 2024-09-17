@@ -1,0 +1,16 @@
+---
+import { Hexagon } from "./Hexagon";
+---
+
+<section class="py-60 relative overflow-x-clip">
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <Hexagon size={800} client:load duration={30} />
+    </div>
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <Hexagon size={1200} client:load duration={50} reverse />
+    </div>
+
+    <div class="container">
+       <slot/>
+    </div>
+  </section>
