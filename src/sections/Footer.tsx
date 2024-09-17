@@ -45,11 +45,19 @@ export const Footer = () => {
           <div>
             <img src="/assets/images/logo.svg" alt="blockforge logo" />
           </div>
-          <nav className="hidden md:flex text-zinc-500 font-heading font-black gap-12">
-            <a href="#">Home</a>
-            <a href="#">Blog</a>
-            <a href="#">Careets</a>
-            <a href="#">Contact</a>
+          <nav className="hidden md:flex text-zinc-500 font-heading font-black gap-12 ">
+            <a href="/" className="hover:text-zinc-300 transition-all duration-300">
+              Home
+            </a>
+            <a href="/blog" className="hover:text-zinc-300 transition-all duration-300">
+              Blog
+            </a>
+            <a href="/careers" className="hover:text-zinc-300 transition-all duration-300">
+              Careers
+            </a>
+            <a href="/contact" className="hover:text-zinc-300 transition-all duration-300">
+              Contact
+            </a>
           </nav>
         </div>
 
