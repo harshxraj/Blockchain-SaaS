@@ -11,10 +11,15 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+// const post = Astro.props;
+// const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
+<!-- <BlogPost {...post.data}>
 	<Content />
-</BlogPost>
+</BlogPost> -->
+
+
+<div>
+	blog post
+</div>

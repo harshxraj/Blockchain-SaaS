@@ -1,7 +1,100 @@
 ---
-// import { getCollection } from 'astro:content';
+import { getCollection } from 'astro:content';
+import DefaultLayout from "../../layouts/Default.astro"
+import { CutCornerButton } from "../../components/CutCornerButton";
+import { Hexagon } from "../../components/Hexagon";
+import { Card } from '../../components/Card';
+import { Tag } from '../../components/Tag';
+import { getPostColorFromCategory } from '../../utils/postUtils';
+import { motion } from 'framer-motion';
+import { twMerge } from 'tailwind-merge';
 
-// const posts = (await getCollection('blog')).sort(
-// 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-// );
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const latestPost = posts[0];
 ---
+<DefaultLayout>
+
+    <section class="py-60 relative overflow-x-clip">
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Hexagon size={800} client:load duration={30} />
+      </div>
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Hexagon size={1200} client:load duration={50} reverse />
+      </div>
+  
+      <div class="container">
+        <div class="max-w-3xl mx-auto">
+          <p class="uppercase text-center font-extrabold text-zinc-500 tracking-wider">
+            Latest Posts
+          </p>
+          <h1 class="font-heading font-black text-5xl lg:text-7xl md:text-6xl text-center mt-4">
+            {latestPost.data.title}
+          </h1>
+          <p class="text-center text-xl md:text-2xl mt-6 text-zinc-400 max-w-xl mx-auto">
+            {latestPost.data.description}
+          </p>
+          <div class="flex justify-center mt-10">
+            <a href={`blog/${latestPost.slug}`}>
+              <CutCornerButton>Read More</CutCornerButton>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-32 bg-zinc-900/30 backdrop-blur-sm">
+      <div class="container" >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="flex flex-col gap-8 lg:gap-12">
+            {posts.map(({ data: { category, title, description }, slug }, postIndex) => (
+              <motion.a client:load 
+              initial={{opacity: 0, y: 20}} 
+              whileInView={{opacity: 1, y: 0}}
+              viewport={{once: true, amount: 0.5}}
+              transition={{
+                duration: 0.5,
+                ease: "easeIn"
+              }}
+              href={`/blog/${slug}`} className={twMerge(postIndex % 2 === 0 ? "" : "block md:hidden")}>
+                <Card
+                  buttonText="Read More"
+                  color={getPostColorFromCategory(category)}
+                >
+                  <Tag color={getPostColorFromCategory(category)}>{category}</Tag>
+                  <h2 class="font-heading font-black text-3xl mt-4">{title}</h2>
+                  <p class="tex-lg mt-6 text-zinc-400">{description}</p>
+                </Card>
+              </motion.a>
+            ))}
+          </div>
+          <div class="flex-col gap-8 lg:gap-12 mt-24 hidden md:flex">
+            {posts.map(({ data: { category, title, description }, slug }, postIndex) => (
+              <motion.a client:load
+              initial={{opacity: 0, y: 20}} 
+              whileInView={{opacity: 1, y: 0}}
+              viewport={{once: true, amount: 0.5}}
+              transition={{
+                duration: 0.5,
+                ease: "easeIn"
+              }}
+              href={`/blog/${slug}`} className={twMerge(postIndex % 2 === 0 ? "hidden" : "")}>
+                <Card
+                  buttonText="Read More"
+                  color={getPostColorFromCategory(category)}
+                >
+                  <Tag color={getPostColorFromCategory(category)}>{category}</Tag>
+                  <h2 class="font-heading font-black text-3xl mt-4">{title}</h2>
+                  <p class="tex-lg mt-6 text-zinc-400">{description}</p>
+                </Card>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+  </DefaultLayout>;
+  

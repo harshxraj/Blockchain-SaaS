@@ -39,7 +39,7 @@ export const HeaderSection = () => {
               <img src="/assets/images/logo.svg" alt="logo" />
             </div>
             {/* Hamburger and button */}
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 items-center hover:cursor-pointer">
               <CutCornerButton className="hidden md:inline-flex">Get Started</CutCornerButton>
               <div className="size-10 relative" onClick={() => setIsOpen(!isOpen)}>
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
