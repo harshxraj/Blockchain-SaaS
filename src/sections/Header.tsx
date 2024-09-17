@@ -35,9 +35,12 @@ export const HeaderSection = () => {
       <header className="sticky top-0 bg-zinc-900/50 backdrop-blur-lg z-40">
         <div className="container">
           <div className="flex justify-between items-center h-24 md:h-28">
-            <div>
-              <img src="/assets/images/logo.svg" alt="logo" />
-            </div>
+            <a href="/">
+              <div>
+                <img src="/assets/images/logo.svg" alt="logo" />
+              </div>
+            </a>
+
             {/* Hamburger and button */}
             <div className="flex gap-4 items-center hover:cursor-pointer">
               <CutCornerButton className="hidden md:inline-flex">Get Started</CutCornerButton>
