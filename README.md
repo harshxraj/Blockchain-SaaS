@@ -3,6 +3,7 @@
 ## Project Overview
 
 This project is a **dark-mode blockchain SaaS website** built with **Astro.js**, **TailwindCSS**, and **Framer Motion**. It features an engaging, modern user interface with smooth animations and a dark theme optimized for user experience. The site is structured to demonstrate the power of blockchain technology in a clean, functional design suitable for SaaS platforms.
+[Live Link](https://blockchain-saas-weld.vercel.app/)
 
 ## Features
 
@@ -18,6 +19,13 @@ This project is a **dark-mode blockchain SaaS website** built with **Astro.js**,
 - **Astro.js**: Static site generator for a fast, scalable web experience.
 - **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
 - **Framer Motion**: Animation library for React to create interactive and engaging UI components.
+
+## Preview
+### Home Page![home-page](https://github.com/user-attachments/assets/970eb0aa-0568-49a3-83b5-b775731eab25)
+### Blog Page![blog-page](https://github.com/user-attachments/assets/59153d5a-0b7f-46fd-a65c-0caec6edf381)
+### Careers Page![careers-page](https://github.com/user-attachments/assets/7468e378-48e0-4653-9f7e-025f6bf3b263)
+### Contact Page![contact-page](https://github.com/user-attachments/assets/b2e7c224-3be6-4f7a-9954-03e803614163)
+
 
 ## Installation and Setup
 
